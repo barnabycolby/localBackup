@@ -31,4 +31,4 @@ fi
 # --human-readable Outputs numbers in a human readable format
 # --info=progress2 Outputs the total transfer progress
 # sudo required to copy files with any permission
-sudo rsync -avzHAX --delete --human-readable --info=progress2${excludeFromArgument} ${backupLocation}/* backup@green:/mnt/backup/${backupFolderName}/
+sudo rsync -avzHAX --delete --human-readable --info=progress2${excludeFromArgument} ${backupLocation}/ backup@green:/mnt/backup/${backupFolderName}/
