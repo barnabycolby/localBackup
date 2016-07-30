@@ -16,7 +16,8 @@ else
 fi
 
 # If the excludes file exists then we need to set it as an argument
-excludesFilePath="./excludes.txt"
+backupDirectory="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+excludesFilePath="${backupDirectory}/excludes.txt"
 if [ -e "${excludesFilePath}" ]; then
     excludeFromArgument=" --exclude-from=${excludesFilePath}"
 fi

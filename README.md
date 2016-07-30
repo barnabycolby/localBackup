@@ -1,7 +1,7 @@
 The backup.sh script performs a backup of the users home directory (i.e. ~/\*), unless an alternative location is specified.
 
 # Excluding files/directories
-Any excludes must be specified in a excludes.txt file in the working directory of the script.
+Any excludes must be specified in a excludes.txt file in the working directory of the script. The file paths are parsed relative to the root directory, so for example, if backing up /home/web and wanting to exclude /home/web/beans.txt, then a /beans.txt exclude rule should be added.
 
 # Setup
 ## SSH Key access
