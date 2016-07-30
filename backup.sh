@@ -10,4 +10,4 @@
 # --human-readable Outputs numbers in a human readable format
 # --info=progress2 Outputs the total transfer progress
 # sudo required to copy files with any permission
-sudo rsync -avzHAX --delete --human-readable --info=progress2 --exclude-from=/home/barnaby/Backup/excludes.txt ~/* backup@green:/mnt/backup/barnaby/
+sudo rsync -avzHAX --delete --human-readable --info=progress2 --exclude-from=./excludes.txt ~/* backup@green:/mnt/backup/barnaby/
