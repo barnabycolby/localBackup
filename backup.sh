@@ -9,7 +9,7 @@ fi
 # If the excludes file exists then we need to set it as an argument
 excludesFilePath="./excludes.txt"
 if [ -e "${excludesFilePath}" ]; then
-    excludeFromArgument="--exclude-from=${excludesFilePath} "
+    excludeFromArgument=" --exclude-from=${excludesFilePath}"
 fi
 
 # -a Archive
@@ -22,4 +22,4 @@ fi
 # --human-readable Outputs numbers in a human readable format
 # --info=progress2 Outputs the total transfer progress
 # sudo required to copy files with any permission
-sudo rsync -avzHAX --delete --human-readable --info=progress2 ${excludeFromArgument}~/* backup@green:/mnt/backup/${backupFolderName}/
+sudo rsync -avzHAX --delete --human-readable --info=progress2${excludeFromArgument} ~/* backup@green:/mnt/backup/${backupFolderName}/
