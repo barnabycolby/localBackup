@@ -18,6 +18,11 @@ ssh-keygen -t rsa
 ssh-copy-id backup@green
 ```
 
+## Email on error
+- Install ssmtp and copy the ssmtp.conf file to /etc/ssmtp, making sure to enter the correct email address and password to send email from
+- Copy the status-email-user systemd service to /etc/systemd/system
+- Copy the systemd-email program to /usr/local/bin, ensuring that it is executable
+
 # Running the script - automatically
 A systemd timer can be set up to run the script automatically by copying the backup.service and backup.timer files to /etc/systemd/system and enabling (and starting) the backup timer. They include the ability to email on error, which can be set up by following instructions found at https://wiki.archlinux.org/index.php/Systemd/Timers#Caveats, or copying the configuration from existing machines.
 

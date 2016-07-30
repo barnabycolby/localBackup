@@ -1,0 +1,8 @@
+[Unit]
+Description=status email for %I to Barney
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/systemd-email 'barnaby.colby@gmail.com' %i
+User=nobody
+Group=systemd-journal
