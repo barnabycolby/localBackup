@@ -4,5 +4,5 @@ OnFailure=status-email-user@%n.service
 
 [Service]
 Type=oneshot
-ExecStart=/bin/sh /home/web/Backup/backup.sh orange /home/web
+ExecStart=/bin/sh /home/web/Backup/backup.sh orange
 User=root

@@ -1,4 +1,7 @@
-The backup.sh script performs a backup of the users home directory (i.e. ~/\*), unless an alternative location is specified.
+The backup.sh script performs a backup of the files/directories specified in the includes.txt file.
+
+# Including files/directories
+The files/directories that you wish to be backed up must be placed into an includes.txt file in the same directory as the script. The files/directories will be passed to rsync verbatim, so make sure that they are correct and absolute.
 
 # Excluding files/directories
 Any excludes must be specified in a excludes.txt file in the working directory of the script. The file paths are parsed relative to the root directory, so for example, if backing up /home/web and wanting to exclude /home/web/beans.txt, then a /beans.txt exclude rule should be added.
@@ -25,5 +28,3 @@ The script requires the first argument to be the backup folder name on the backu
 ```
 sh backup.sh orange
 ```
-
-An optional second argument can be passed to the script to specify the location to backup, overriding the default (~). Note that this was added to support the systemd units.

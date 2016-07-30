@@ -6,17 +6,17 @@ if [ -z "${backupFolderName}" ]; then
     exit 1
 fi
 
-# Set the location to backup, by default this is ~ but can be set via the second script argument
-backupLocation=$2
-if [ -z "${backupLocation}" ]; then
-    backupLocation=~
+# Our source files come from an includes.txt file, we need to throw an error if we cannot find it
+backupDirectory="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+includesFilePath="${backupDirectory}/includes.txt"
+if [ -e "${includesFilePath}" ]; then
+    includeArgument="$(cat ${includesFilePath})"
 else
-    # Remove the trailing slash if it exists
-    backupLocation="${backupLocation%/}"
+    echo "You must provide an includes.txt file so I know what to backup."
+    exit 2
 fi
 
 # If the excludes file exists then we need to set it as an argument
-backupDirectory="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 excludesFilePath="${backupDirectory}/excludes.txt"
 if [ -e "${excludesFilePath}" ]; then
     excludeFromArgument=" --exclude-from=${excludesFilePath}"
@@ -28,8 +28,9 @@ fi
 # -H Preserve hardlinks
 # -A Preserve access control lists
 # -X Preserve extended attributes
+# --relative Preserves the directory structure in the destination
 # --delete Deletes extra files in destination
 # --human-readable Outputs numbers in a human readable format
 # --info=progress2 Outputs the total transfer progress
 # sudo required to copy files with any permission
-sudo rsync -avzHAX --delete --human-readable --info=progress2${excludeFromArgument} ${backupLocation}/ backup@green:/mnt/backup/${backupFolderName}/
+sudo rsync -avzHAX --relative --delete --human-readable --info=progress2${excludeFromArgument} ${includeArgument} backup@green:/mnt/backup/${backupFolderName}/
