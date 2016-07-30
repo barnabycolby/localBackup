@@ -1,0 +1,8 @@
+[Unit]
+Description=File backup to the green backup server
+OnFailure=status-email-user@%n.service
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh /home/web/Backup/backup.sh orange /home/web
+User=root

@@ -6,6 +6,15 @@ if [ -z "${backupFolderName}" ]; then
     exit 1
 fi
 
+# Set the location to backup, by default this is ~ but can be set via the second script argument
+backupLocation=$2
+if [ -z "${backupLocation}" ]; then
+    backupLocation=~
+else
+    # Remove the trailing slash if it exists
+    backupLocation="${backupLocation%/}"
+fi
+
 # If the excludes file exists then we need to set it as an argument
 excludesFilePath="./excludes.txt"
 if [ -e "${excludesFilePath}" ]; then
@@ -22,4 +31,4 @@ fi
 # --human-readable Outputs numbers in a human readable format
 # --info=progress2 Outputs the total transfer progress
 # sudo required to copy files with any permission
-sudo rsync -avzHAX --delete --human-readable --info=progress2${excludeFromArgument} ~/* backup@green:/mnt/backup/${backupFolderName}/
+sudo rsync -avzHAX --delete --human-readable --info=progress2${excludeFromArgument} ${backupLocation}/* backup@green:/mnt/backup/${backupFolderName}/
