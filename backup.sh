@@ -6,6 +6,12 @@ if [ -z "${backupFolderName}" ]; then
     exit 1
 fi
 
+# If the excludes file exists then we need to set it as an argument
+excludesFilePath="./excludes.txt"
+if [ -e "${excludesFilePath}" ]; then
+    excludeFromArgument="--exclude-from=${excludesFilePath} "
+fi
+
 # -a Archive
 # -v Verbose
 # -z Compression during transfer
@@ -16,4 +22,4 @@ fi
 # --human-readable Outputs numbers in a human readable format
 # --info=progress2 Outputs the total transfer progress
 # sudo required to copy files with any permission
-sudo rsync -avzHAX --delete --human-readable --info=progress2 --exclude-from=./excludes.txt ~/* backup@green:/mnt/backup/${backupFolderName}/
+sudo rsync -avzHAX --delete --human-readable --info=progress2 ${excludeFromArgument}~/* backup@green:/mnt/backup/${backupFolderName}/
