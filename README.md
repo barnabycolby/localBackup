@@ -14,3 +14,9 @@ ssh-keygen -t rsa
 ```
 ssh-copy-id backup@green
 ```
+
+# Running the script - manually
+The script requires the first argument to be the backup folder name on the backup drive. This will most likely be the machine name.
+```
+sh backup.sh orange
+```
