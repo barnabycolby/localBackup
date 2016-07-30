@@ -16,7 +16,7 @@ ssh-copy-id backup@green
 ```
 
 # Running the script - automatically
-A systemd timer can be set up to run the script automatically by copying the backup.service and backup.timer files to /etc/systemd/system and enabling the backup timer. They include the ability to email on error, which can be set up by following instructions found at https://wiki.archlinux.org/index.php/Systemd/Timers#Caveats, or copying the configuration from existing machines.
+A systemd timer can be set up to run the script automatically by copying the backup.service and backup.timer files to /etc/systemd/system and enabling (and starting) the backup timer. They include the ability to email on error, which can be set up by following instructions found at https://wiki.archlinux.org/index.php/Systemd/Timers#Caveats, or copying the configuration from existing machines.
 
 You will need to manually change the systemd unit files to point to the correct directories and use the correct machine name, as well as updating the weekday in backup.timer to something not already used.
 
