@@ -35,7 +35,8 @@ fi
 # -X Preserve extended attributes
 # --relative Preserves the directory structure in the destination
 # --delete Deletes extra files in destination
+# --delete-excluded Deletes the excluded files from the destination
 # --human-readable Outputs numbers in a human readable format
 # --info=progress2 Outputs the total transfer progress
 # sudo required to copy files with any permission
-sudo rsync -avzHAX --relative --delete --human-readable --info=progress2${excludeFromArgument} ${includeArgument} ${sshDestinationPrefix}/mnt/backup/${backupFolderName}/
+sudo rsync -avzHAX --relative --delete --delete-excluded --human-readable --info=progress2${excludeFromArgument} ${includeArgument} ${sshDestinationPrefix}/mnt/backup/${backupFolderName}/
