@@ -22,6 +22,11 @@ if [ -e "${excludesFilePath}" ]; then
     excludeFromArgument=" --exclude-from=${excludesFilePath}"
 fi
 
+# If the script is running on the backup server itself, then the destination does not require the ssh prefix
+if [ "${HOSTNAME}" != "green" ]; then
+	sshDestinationPrefix='backup@green:'
+fi
+
 # -a Archive
 # -v Verbose
 # -z Compression during transfer
@@ -33,4 +38,4 @@ fi
 # --human-readable Outputs numbers in a human readable format
 # --info=progress2 Outputs the total transfer progress
 # sudo required to copy files with any permission
-sudo rsync -avzHAX --relative --delete --human-readable --info=progress2${excludeFromArgument} ${includeArgument} backup@green:/mnt/backup/${backupFolderName}/
+sudo rsync -avzHAX --relative --delete --human-readable --info=progress2${excludeFromArgument} ${includeArgument} ${sshDestinationPrefix}/mnt/backup/${backupFolderName}/
